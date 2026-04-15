@@ -1,6 +1,6 @@
 # User guide — EBM_implement (EBM_TLE)
 
-Evaluation of the *Epilepsia* EBM/MTLE-HS methods paper and this repository’s implementation (usability, reproducibility, performance, generalization, clinical use, interpretability, integration, limitations). For a minimal overview see [README.md](README.md).
+Operational guide for this repository. For the **Inzira-style Builder Review** narrative (same themes in long form), see [EBM_TLE_br.md](EBM_TLE_br.md). For a minimal overview see [README.md](README.md).
 
 **Primary reference:** Lopez SM, Aksman LM, Oxtoby NP, et al. *Event-based modeling in temporal lobe epilepsy demonstrates progressive atrophy from cross-sectional data.* Epilepsia. 2022;63(8):2081–2095. https://doi.org/10.1111/epi.17316 (PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC9540015/)
 

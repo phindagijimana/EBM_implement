@@ -37,7 +37,8 @@ Background demo, logs, stop:
 
 | File | Contents |
 |------|-----------|
-| [USER_GUIDE.md](USER_GUIDE.md) | Full usage, design notes, limitations, generalization, references |
+| [USER_GUIDE.md](USER_GUIDE.md) | Usage, commands, limitations, generalization |
+| [EBM_TLE_br.md](EBM_TLE_br.md) | Builder Review (Inzira-style): platform fit, reproducibility, clinical/integration notes |
 | [EBM_TLE.md](EBM_TLE.md) | Short summary of the Lopez et al. paper |
 
 There is **no** pretrained checkpoint from the paper in this repo; train on your features or see the user guide for reuse expectations.
