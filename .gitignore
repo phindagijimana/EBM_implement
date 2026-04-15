@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ebm/run/pid
+.ebm/logs/*.log
+.ebm/last_demo/
+runs/
+dist/
+build/

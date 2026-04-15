@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ebm-tle"
+version = "0.1.0"
+description = "Internal research CLI for KDE event-based models (pySuStaIn / kde_ebm)"
+requires-python = ">=3.9"
+dependencies = []
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+# EBM_TLE driver: ./ebm install | check | demo | start | stop | logs | fit ...
+set -euo pipefail
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+export MPLBACKEND="${MPLBACKEND:-Agg}"
+
+need_python() {
+  if ! command -v python3 &>/dev/null; then
+    echo "ebm: python3 not found" >&2
+    exit 1
+  fi
+}
+
+cmd_install() {
+  need_python
+  if [[ ! -d "${ROOT}/../predict_epi/vendor/pySuStaIn" ]]; then
+    echo "ebm: expected pySuStaIn at ${ROOT}/../predict_epi/vendor/pySuStaIn" >&2
+    exit 1
+  fi
+  python3 -m venv "${ROOT}/.venv"
+  "${ROOT}/.venv/bin/pip" install --upgrade pip
+  "${ROOT}/.venv/bin/pip" install -r "${ROOT}/requirements.txt"
+  "${ROOT}/.venv/bin/pip" install -e "${ROOT}"
+  echo "ebm: install complete. Run: ${ROOT}/ebm check"
+}
+
+if [[ "${1:-}" == "install" ]]; then
+  cmd_install
+  exit 0
+fi
+
+VENV_PY="${ROOT}/.venv/bin/python"
+if [[ ! -x "${VENV_PY}" ]]; then
+  echo "ebm: no venv. Run: ${ROOT}/ebm install" >&2
+  exit 1
+fi
+
+exec "${VENV_PY}" -m ebm_tle "${@}"
