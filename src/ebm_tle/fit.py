@@ -24,6 +24,9 @@ def fit_from_csv(
     seed: int = 42,
     plot: bool = False,
 ) -> Path:
+    output_dir = Path(output_dir)
+    output_dir.mkdir(parents=True, exist_ok=True)
+
     df = pd.read_csv(csv_path)
     if group_col not in df.columns:
         raise ValueError(f"Missing column {group_col!r}")
@@ -60,7 +63,7 @@ def fit_from_csv(
         n_startpoints,
         n_s_max,
         n_mcmc,
-        str(output_dir),
+        str(output_dir.resolve()),
         dataset_name,
         use_parallel_startpoints=False,
         seed=seed,
@@ -78,7 +81,6 @@ def fit_from_csv(
             "prob_ml_stage": np.asarray(prob_ml_stage).reshape(-1),
         }
     )
-    output_dir.mkdir(parents=True, exist_ok=True)
     out_csv = output_dir / f"{dataset_name}_stages.csv"
     out.to_csv(out_csv, index=False)
     (output_dir / "fit_meta.json").write_text(
