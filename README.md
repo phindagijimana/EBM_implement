@@ -4,11 +4,7 @@ Internal **research** CLI for **KDE event-based models** (MTLE-HS–style morpho
 
 ## Prerequisites
 
-- **Python 3.9+** and network access for first install (`kde_ebm`, `awkde` from GitHub).
-- **Sibling checkout:** this repo expects `predict_epi/vendor/pySuStaIn` next to it, e.g.
-  - `Documents/predict_epi/vendor/pySuStaIn`
-  - `Documents/EBM_TLE` (this project)  
-  Adjust the `-e` line in `requirements.txt` if your layout differs.
+- **Python 3.9+** and network access for first install: **`pySuStaIn`**, **`kde_ebm`**, and **`awkde`** are installed from GitHub (see [requirements.txt](requirements.txt)), matching the [UCL POND](https://github.com/ucl-pond/pySuStaIn) stack.
 
 ## Quick start
 

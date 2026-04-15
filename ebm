@@ -13,10 +13,6 @@ need_python() {
 
 cmd_install() {
   need_python
-  if [[ ! -d "${ROOT}/../predict_epi/vendor/pySuStaIn" ]]; then
-    echo "ebm: expected pySuStaIn at ${ROOT}/../predict_epi/vendor/pySuStaIn" >&2
-    exit 1
-  fi
   python3 -m venv "${ROOT}/.venv"
   "${ROOT}/.venv/bin/pip" install --upgrade pip
   "${ROOT}/.venv/bin/pip" install -r "${ROOT}/requirements.txt"

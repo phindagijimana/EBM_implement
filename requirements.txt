@@ -1,6 +1,4 @@
-# Vendored pySuStaIn (MixtureSustain / KDE EBM). EBM_TLE must sit next to predict_epi under Documents.
--e ../predict_epi/vendor/pySuStaIn
-
+# UCL POND stack — same family as https://github.com/ucl-pond/pySuStaIn and https://github.com/ucl-pond/kde_ebm
 numpy>=1.18,<2.4.0
 scipy
 matplotlib>=3.0.0
@@ -13,3 +11,4 @@ awkde @ git+https://github.com/noxtoby/awkde.git
 kde_ebm @ git+https://github.com/ucl-pond/kde_ebm.git
 tqdm
 openpyxl
+pySuStaIn @ git+https://github.com/ucl-pond/pySuStaIn.git

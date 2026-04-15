@@ -22,8 +22,6 @@ def cmd_check() -> int:
     print(f"ebm-tle {__version__}")
     print(f"ROOT={root}")
     print(f"venv_python={py} exists={py.is_file()}")
-    pysu = root.parent / "predict_epi" / "vendor" / "pySuStaIn"
-    print(f"pySuStaIn_vendor={pysu} exists={pysu.is_dir()}")
     try:
         import kde_ebm  # noqa: F401
 
@@ -32,9 +30,10 @@ def cmd_check() -> int:
         print(f"import kde_ebm: FAIL ({e})")
         return 1
     try:
-        import pySuStaIn  # noqa: F401
+        import pySuStaIn
 
-        print("import pySuStaIn: ok")
+        loc = Path(pySuStaIn.__file__).resolve().parent
+        print(f"import pySuStaIn: ok ({loc})")
     except Exception as e:
         print(f"import pySuStaIn: FAIL ({e})")
         return 1

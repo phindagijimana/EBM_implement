@@ -4,7 +4,7 @@ Operational guide for this repository. For the **Inzira-style Builder Review** n
 
 **Primary reference:** Lopez SM, Aksman LM, Oxtoby NP, et al. *Event-based modeling in temporal lobe epilepsy demonstrates progressive atrophy from cross-sectional data.* Epilepsia. 2022;63(8):2081–2095. https://doi.org/10.1111/epi.17316 (PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC9540015/)
 
-**Typical layout:** this repo (`./ebm`, `src/ebm_tle/`, `requirements.txt`); **sibling** `predict_epi/vendor/pySuStaIn`; local `runs/`, `.ebm/logs/` (ignored by git); paper summary in `EBM_TLE.md`.
+**Typical layout:** this repo (`./ebm`, `src/ebm_tle/`, `requirements.txt`); `pySuStaIn` from GitHub via pip; local `runs/`, `.ebm/logs/` (ignored by git); paper summary in `EBM_TLE.md`.
 
 ---
 
@@ -17,8 +17,8 @@ This repository adds a **deployment shell**: venv + **`./ebm`** (`install`, `che
 | Piece | Location | Role |
 |--------|-----------|------|
 | CLI | `./ebm` | `install` creates `.venv`; other commands run `python -m ebm_tle`. |
-| Package | `src/ebm_tle/` | `demo`, `fit`, lifecycle; `synthetic.py` avoids broken vendored `sim` imports. |
-| Upstream | `../predict_epi/vendor/pySuStaIn` | Required for editable install unless you change `requirements.txt`. |
+| Package | `src/ebm_tle/` | `demo`, `fit`, lifecycle; `synthetic.py` avoids broken `sim` imports in upstream pySuStaIn. |
+| Upstream | [ucl-pond/pySuStaIn](https://github.com/ucl-pond/pySuStaIn), [kde_ebm](https://github.com/ucl-pond/kde_ebm) | Installed from GitHub in `./ebm install`. |
 | Deps | `requirements.txt` | `kde_ebm`, `awkde`, numpy/scipy/sklearn, etc. |
 | Run state | `.ebm/run/pid`, `.ebm/logs/fit.log` | `start` / `stop` / `logs`. |
 

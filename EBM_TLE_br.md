@@ -4,7 +4,7 @@ Evaluation of the *Epilepsia* EBM/MTLE-HS methods paper and this workspace’s i
 
 **Primary reference:** Lopez SM, Aksman LM, Oxtoby NP, et al. *Event-based modeling in temporal lobe epilepsy demonstrates progressive atrophy from cross-sectional data.* Epilepsia. 2022;63(8):2081–2095. https://doi.org/10.1111/epi.17316 (PMC: https://pmc.ncbi.nlm.nih.gov/articles/PMC9540015/)
 
-**Typical local layout:** `EBM_TLE/` (`./ebm` CLI, `src/ebm_tle/`, `requirements.txt`, `pyproject.toml`); **sibling** `predict_epi/vendor/pySuStaIn` (editable install); optional `runs/`, `.ebm/logs/`; paper summary in `EBM_TLE.md`.
+**Typical local layout:** `EBM_TLE/` (`./ebm` CLI, `src/ebm_tle/`, `requirements.txt`, `pyproject.toml`); **`pySuStaIn` / `kde_ebm` from GitHub** via pip; optional `runs/`, `.ebm/logs/`; paper summary in `EBM_TLE.md`.
 
 ---
 
@@ -17,8 +17,8 @@ This workspace adds a **deployment shell**: venv + **`./ebm`** (`install`, `chec
 | Piece | Location | Role |
 |--------|-----------|------|
 | CLI driver | `./ebm` | Bash: `install` creates `.venv`; other commands call `python -m ebm_tle`. |
-| Python package | `src/ebm_tle/` | `demo`, `fit`, lifecycle commands; `synthetic.py` avoids broken `sim` imports in vendored pySuStaIn. |
-| Upstream | `../predict_epi/vendor/pySuStaIn` | **Required** next to `Documents/EBM_TLE` under `Documents/`. |
+| Python package | `src/ebm_tle/` | `demo`, `fit`, lifecycle commands; `synthetic.py` avoids broken `sim` package imports in upstream pySuStaIn. |
+| Upstream | [ucl-pond/pySuStaIn](https://github.com/ucl-pond/pySuStaIn), [kde_ebm](https://github.com/ucl-pond/kde_ebm) | Pinned in `requirements.txt` (Git installs). |
 | Dependencies | `requirements.txt` | `kde_ebm`, `awkde`, numpy/scipy/sklearn, etc. (git + network on first install). |
 | Run state | `.ebm/run/pid`, `.ebm/logs/fit.log` | Background `start` / `stop` / `logs`. |
 
@@ -94,7 +94,7 @@ This workspace adds a **deployment shell**: venv + **`./ebm`** (`install`, `chec
 
 ### Integration potential
 
-- **Research integration:** Natural downstream of **BIDS + FreeSurfer/ENIGMA-style** summary tables → **`ebm fit`**; optional adjacency to `predict_epi` env on the same machine.
+- **Research integration:** Natural downstream of **BIDS + FreeSurfer/ENIGMA-style** summary tables → **`ebm fit`**.
 - **Clinical integration:** Not provided; governance and intended-use labeling remain with the deploying institution.
 
 ---
@@ -102,7 +102,7 @@ This workspace adds a **deployment shell**: venv + **`./ebm`** (`install`, `chec
 ## Limitations and failure modes
 
 - **No imaging pipeline** in-repo; CSV quality is the builder’s responsibility.
-- **Sibling path** to `predict_epi/vendor/pySuStaIn` is mandatory for `./ebm install` as written.
+- **`./ebm install`** needs network access to clone **`pySuStaIn`** / **`kde_ebm`** / **`awkde`** from GitHub.
 - **Background `start`** runs the **synthetic demo** by default—not a generic job queue; change `cli.cmd_start` to background **`fit`** if needed.
 - **Headless:** set `MPLBACKEND=Agg` (default in `./ebm`); plotting in SuStaIn may still touch matplotlib.
 - **NFS/home latency** can slow venv I/O and large pickle writes; local SSD may help heavy runs.
@@ -142,7 +142,7 @@ chmod +x ./ebm          # once
 
 - Lopez et al. 2022 *Epilepsia* — MTLE-HS KDE EBM (DOI above).
 - `EBM_TLE.md` — concise paper summary in this folder.
-- pySuStaIn / kde_ebm — UCL POND tooling (installed via `requirements.txt` + vendored pySuStaIn).
+- pySuStaIn / kde_ebm — UCL POND tooling (installed via `requirements.txt`, GitHub).
 - Builder Review criteria (local or internal docs) — full dimension list if needed for alignment with other reviews.
 
 ---
