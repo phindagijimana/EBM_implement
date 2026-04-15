@@ -39,6 +39,15 @@ Background demo, logs, stop:
 
 There is **no** pretrained checkpoint from the paper in this repo; train on your features or see the user guide for reuse expectations.
 
+## Tests
+
+After `./ebm install`, install pytest and run the suite (KDE + MCMC smoke tests, CLI, background start/stop):
+
+```bash
+.venv/bin/pip install -e ".[dev]"
+MPLBACKEND=Agg .venv/bin/pytest tests/ -v
+```
+
 ## License / use
 
 Tooling stack follows upstream **pySuStaIn** / **kde_ebm** terms. This wrapper is for **research** workflows, not a clinical product.

@@ -95,7 +95,10 @@ def cmd_stop() -> int:
         print(f"ebm: sent SIGTERM to {pid}")
     except ProcessLookupError:
         print(f"ebm: process {pid} not running")
-    paths.PID_FILE.unlink(missing_ok=True)
+    except PermissionError:
+        print(f"ebm: permission denied signalling pid {pid}")
+    finally:
+        paths.PID_FILE.unlink(missing_ok=True)
     return 0
 
 
