@@ -8,3 +8,7 @@ __pycache__/
 runs/
 dist/
 build/
+
+# Local-only (not published to GitHub)
+LeGUI_br.md
+build_reviewer.docx
